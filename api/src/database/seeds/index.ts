@@ -1,5 +1,5 @@
 import { Knex } from 'knex'
 
-export async function seed(_knex: Knex): Promise<void> {
+export function seed(_knex: Knex): void {
   console.log('TODO: Add seeds')
 }
