@@ -1,0 +1,11 @@
+{
+  "extends": "fastify-tsconfig",
+  "compilerOptions": {
+    "types": ["node"],
+    "outDir": "dist",
+    "declaration": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "output"],
+  "rootDir": "./src"
+}
