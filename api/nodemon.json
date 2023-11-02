@@ -1,0 +1,7 @@
+{
+  "ignore": ["node_modules", "dist"],
+  "watch": ["src"],
+  "exec": "yarn clean && yarn build && yarn start",
+  "ext": "ts,js,mjs,cjs,json,html,css",
+  "signal": "SIGTERM"
+}
