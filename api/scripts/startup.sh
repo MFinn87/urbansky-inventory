@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# TODO: Use proper pg_wait
-sleep 5
-
 echo "Starting up..."
 
 if [ "$SHOULD_RUN_DATABASE_MIGRATE" = "true" ]; then

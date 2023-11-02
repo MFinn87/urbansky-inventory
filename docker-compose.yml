@@ -14,9 +14,17 @@ services:
       PGPORT: ${DATABASE_PORT}
     ports:
       - ${DATABASE_PORT}:${DATABASE_PORT}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
   api:
     platform: linux/amd64
     container_name: urbansky-inventory-api
+    depends_on:
+      db:
+        condition: service_healthy
     build:
       context: ./api
       dockerfile: ./Dockerfile
