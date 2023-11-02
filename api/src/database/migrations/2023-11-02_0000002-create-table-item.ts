@@ -7,6 +7,8 @@ export async function up(knex: Knex): Promise<void> {
     table.specificType('name', 'citext').checkLength('<=', 63).notNullable()
     table.specificType('description', 'citext').checkLength('<=', 127).notNullable()
     table.timestamp('created_at', { useTz: false }).defaultTo(knex.raw(`(now() at time zone 'utc')`))
+
+    table.index(['created_at'])
   })
 }
 
