@@ -7,8 +7,11 @@ import itemService from '../modules/item/item.service'
 import ItemModel from '../modules/item/item.model'
 
 const routes: FastifyPluginAsync = async (fastify: FastifyTypebox): Promise<void> => {
-  // These API Schemas auto-generate Swagger documentation,
-  // and will be used by Fastify auto-implment request/response validation.
+  // These API Schemas:
+  //    Are used to auto-generate Swagger documentation,
+  //    Are used by Fastify to auto-implement request/response body
+  //      validation against missing fields, invalid data types,
+  //      remove extra fields, etc.
   const {
     findMany,
     findById,

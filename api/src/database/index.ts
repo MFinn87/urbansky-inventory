@@ -1,10 +1,8 @@
 import connection from './connections'
-// TODO: Bring in helpers!
+import helpers from './helpers'
 import { onQueryError } from './events'
 
 connection.on('query-error', onQueryError)
-
-const helpers = {}
 
 export default connection
 export {

@@ -1,6 +1,6 @@
 import { ReadonlyKeysOf } from 'type-fest'
 import { TSchema, Type, Static, TOmit } from '@sinclair/typebox'
-import { filter, find, keys } from 'lodash'
+import { filter, find, keys, isUndefined, omitBy } from 'lodash'
 
 export const Nullable = <T extends TSchema>(schema: T) => Type.Unsafe<Static<T> | null>({ 
   ...schema,
@@ -52,3 +52,5 @@ export const deleteSuccess = {
 
 export const createModel = <T extends typeof Model>(description: string, baseModel: T) => Type
   .Composite([ baseModel ], { additionalProperties: false, description })
+
+export const prepareForDatabase = <T extends Record<string, any>>(data: T) => omitBy(data, isUndefined) as Partial<T>
