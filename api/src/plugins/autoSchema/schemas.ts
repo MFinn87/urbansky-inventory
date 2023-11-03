@@ -1,6 +1,7 @@
 import { TSchema, TString, Type } from '@sinclair/typebox'
 import { startCase, toLower } from 'lodash'
 import { Nullable, UUID, omitReadOnly } from '../../helpers/models'
+import { FastifySchema } from 'fastify'
 
 export const ResourceIdentifier = Type.Object({
   id: UUID(),
@@ -8,7 +9,6 @@ export const ResourceIdentifier = Type.Object({
 
 const toTitleCase = (text: string) => startCase(toLower(text))
 
-// TODO: Add back in all  satisfies FastifySchema s
 export const createFindManySchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
   summary: `Find many ${baseSchema.description || ''} records.`,
@@ -16,7 +16,7 @@ export const createFindManySchema = <T extends TSchema>(baseSchema: T) => ({
   response: {
     200: Type.Array(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createFindByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -26,7 +26,7 @@ export const createFindByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   response: {
     200: Nullable(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createFindManyByParentIdSchema = <T extends TSchema>(baseSchema: T) => (options: any) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -36,7 +36,7 @@ export const createFindManyByParentIdSchema = <T extends TSchema>(baseSchema: T)
   response: {
     200: Type.Array(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createUpdateByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -47,7 +47,7 @@ export const createUpdateByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   response: {
     200: Nullable(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createUpdateManySchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -57,7 +57,7 @@ export const createUpdateManySchema = <T extends TSchema>(baseSchema: T) => ({
   response: {
     200: Type.Array(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createCreateManySchema = <T extends typeof ResourceIdentifier>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -67,7 +67,7 @@ export const createCreateManySchema = <T extends typeof ResourceIdentifier>(base
   response: {
     200: Type.Array(baseSchema),
   },
-})
+} satisfies FastifySchema)
 
 export const createDeleteByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
@@ -79,6 +79,6 @@ export const createDeleteByIdSchema = <T extends TSchema>(baseSchema: T) => ({
       result: Type.String({ default: 'Ok' }),
     }),
   },
-})
+} satisfies FastifySchema)
 
 export const setQueryParameters = <T extends Record<string, U>, U extends TString>(queryParameters: T) => Type.Partial(Type.Object(queryParameters))
