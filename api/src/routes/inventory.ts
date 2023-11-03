@@ -22,7 +22,16 @@ const routes: FastifyPluginAsync = async (fastify: FastifyTypebox): Promise<void
     setQueryParameters,
   } = fastify.createApiSchemas(InventoryModel)
 
-  fastify.get('/inventory', { schema: { ...findMany, querystring: setQueryParameters({ itemId: UUID() }) } }, async (request) => {
+  fastify.get(
+    '/inventory',
+    {
+      schema: {
+        ...findMany,
+        querystring: setQueryParameters({
+          itemId: UUID({ description: 'An itemId to filter Inventory records. (Optional)' }),
+        }),
+      },
+    }, async (request) => {
     const inventory = request.query.itemId
       ? await inventoryService.findManyByItemId(request.query.itemId)
       : await inventoryService.findMany()
