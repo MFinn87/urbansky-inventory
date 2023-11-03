@@ -1,5 +1,5 @@
 import { Type } from '@sinclair/typebox'
-import { createModel, UUID } from '../../lib/models'
+import { createModel, UUID } from '../../helpers/models'
 
 // You can think of this as like a SKU, or any inventoryable item.
 // MAYBE TODO: Set title and description separately in the createModel?

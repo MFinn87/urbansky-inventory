@@ -1,6 +1,6 @@
 import { Static } from '@sinclair/typebox'
 import ItemModel from './item.model'
-import { createRelatedModels } from '../../lib/models'
+import { createRelatedModels } from '../../helpers/models'
 
 const [NewItemModel, UpdateItemModel] = createRelatedModels(ItemModel)
 

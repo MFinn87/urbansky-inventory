@@ -1,7 +1,6 @@
-import { TSchema, Type } from '@sinclair/typebox'
+import { TSchema, TString, Type } from '@sinclair/typebox'
 import { startCase, toLower } from 'lodash'
-import { Nullable, UUID, omitReadOnly } from '../../lib/models'
-// import { FastifySchema } from 'fastify'
+import { Nullable, UUID, omitReadOnly } from '../../helpers/models'
 import pluralize from 'pluralize'
 
 export const ResourceIdentifier = Type.Object({
@@ -27,6 +26,16 @@ export const createFindByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   params: ResourceIdentifier,
   response: {
     200: Nullable(baseSchema),
+  },
+})
+
+export const createFindManyByParentIdSchema = <T extends TSchema>(baseSchema: T) => (options: any) => ({
+  tags: [toTitleCase(pluralize(baseSchema.description || ''))],
+  summary: `Find many ${pluralize(baseSchema.description || '')} by filtering on ${options.parentName} id`,
+  description: `Find many ${pluralize(baseSchema.description || '')} by filtering on ${options.parentName} id`,
+  params: ResourceIdentifier,
+  response: {
+    200: Type.Array(baseSchema),
   },
 })
 
@@ -72,3 +81,5 @@ export const createDeleteByIdSchema = <T extends TSchema>(baseSchema: T) => ({
     }),
   },
 })
+
+export const setQueryParameters = <T extends Record<string, U>, U extends TString>(queryParameters: T) => Type.Partial(Type.Object(queryParameters))

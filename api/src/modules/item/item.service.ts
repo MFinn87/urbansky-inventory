@@ -1,5 +1,5 @@
 import { first, map } from 'lodash'
-import { deleteSuccess } from '../../lib/models'
+import { deleteSuccess } from '../../helpers/models'
 import queries from './item.queries'
 import type { Item, NewItem, UpdateItem } from './item.types'
 
