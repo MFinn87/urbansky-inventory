@@ -31,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  align-items: stretch;
+  align-items: center;
   overflow: hidden;
 
   background-color: var(--white);
@@ -42,7 +42,9 @@ body {
   flex-direction: column;
   flex-grow: 1;
 
+  padding: 1em;
   overflow: auto;
   overflow-wrap: break-word;
   width: 100%;
+  max-width: 1000px;
 }

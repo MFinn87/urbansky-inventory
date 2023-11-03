@@ -19,3 +19,21 @@ export type Inventory = {
   serial: string
   createdAt: string
 }
+
+export type NewItem = {
+  name: string
+  description: string
+}
+
+export type NewInventory = {
+  item: Item
+  serial: string
+}
+
+export type UpdateItem = NewItem & {
+  id: string
+}
+
+export type UpdateInventory = NewInventory & {
+  id: string
+}

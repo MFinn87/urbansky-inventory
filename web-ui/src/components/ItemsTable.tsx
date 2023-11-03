@@ -3,6 +3,7 @@ import {
   createColumnHelper,
   CellContext,
 } from '@tanstack/react-table'
+import { Button } from 'rsuite'
 import DataTable from './Table'
 import type { Item } from '../types'
 import './ItemsTable.css'
@@ -10,10 +11,11 @@ import './ItemsTable.css'
 type ItemsTableProps = {
   data: Item[],
   onManageInventory: (item: Item) => any,
-  onDeleteItem: (item: Item) => any
+  onUpdateItem: (item: Item) => any
+  onDeleteItem: (item: Item) => any,
 }
 
-function ItemsTable({ data, onManageInventory, onDeleteItem }: ItemsTableProps) {
+function ItemsTable({ data, onManageInventory, onUpdateItem, onDeleteItem }: ItemsTableProps) {
   const columnHelper = createColumnHelper<Item>()
 
   const columns = [
@@ -38,8 +40,9 @@ function ItemsTable({ data, onManageInventory, onDeleteItem }: ItemsTableProps) 
       header: () => '',
       cell: (cellContext: CellContext<Item, string>) => (
         <div className="items-table-actions-container">
-          <button onClick={() => onManageInventory(cellContext.row.original)} >Manage Inventory</button>
-          <button onClick={() => onDeleteItem(cellContext.row.original)} >Delete</button>
+          <Button appearance="primary" onClick={() => onManageInventory(cellContext.row.original)} >Manage Inventory</Button>
+          <Button appearance="primary" onClick={() => onUpdateItem(cellContext.row.original)} >Update</Button>
+          <Button appearance="ghost" color="red" onClick={() => onDeleteItem(cellContext.row.original)} >Delete</Button>
         </div>
       ),
     },
