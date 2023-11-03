@@ -1,10 +1,12 @@
 import { FastifyPluginAsync } from 'fastify'
-import type { FastifyTypebox } from '../lib/types'
+import type { FastifyTypebox } from '../types'
 
 import inventoryService from '../modules/inventory/inventory.service'
 import InventoryModel from '../modules/inventory/inventory.model'
 
 const routes: FastifyPluginAsync = async (fastify: FastifyTypebox): Promise<void> => {
+  // These API Schemas auto-generate Swagger documentation,
+  // and will be used by Fastify auto-implment request/response validation.
   const {
     findMany,
     findById,
