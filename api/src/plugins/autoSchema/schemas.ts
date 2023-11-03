@@ -11,8 +11,8 @@ const toTitleCase = (text: string) => startCase(toLower(text))
 // TODO: Add back in all  satisfies FastifySchema s
 export const createFindManySchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
-  summary: `Find many ${baseSchema.description} records.`,
-  description: `Find many ${baseSchema.description} records.`,
+  summary: `Find many ${baseSchema.description || ''} records.`,
+  description: `Find many ${baseSchema.description || ''} records.`,
   response: {
     200: Type.Array(baseSchema),
   },
@@ -20,8 +20,8 @@ export const createFindManySchema = <T extends TSchema>(baseSchema: T) => ({
 
 export const createFindByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
-  summary: `Find one ${baseSchema.description} record by id.`,
-  description: `Find one ${baseSchema.description} record by id.`,
+  summary: `Find one ${baseSchema.description || ''} record by id.`,
+  description: `Find one ${baseSchema.description || ''} record by id.`,
   params: ResourceIdentifier,
   response: {
     200: Nullable(baseSchema),
@@ -30,8 +30,8 @@ export const createFindByIdSchema = <T extends TSchema>(baseSchema: T) => ({
 
 export const createFindManyByParentIdSchema = <T extends TSchema>(baseSchema: T) => (options: any) => ({
   tags: [toTitleCase(baseSchema.description || '')],
-  summary: `Find many ${baseSchema.description} records by filtering on ${options.parentName} id.`,
-  description: `Find many ${baseSchema.description} records by filtering on ${options.parentName} id.`,
+  summary: `Find many ${baseSchema.description || ''} records by filtering on ${options.parentName} id.`,
+  description: `Find many ${baseSchema.description || ''} records by filtering on ${options.parentName} id.`,
   params: ResourceIdentifier,
   response: {
     200: Type.Array(baseSchema),
@@ -40,8 +40,8 @@ export const createFindManyByParentIdSchema = <T extends TSchema>(baseSchema: T)
 
 export const createUpdateByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
-  summary: `Update one ${baseSchema.description} by id.`,
-  description: `Update one ${baseSchema.description} record by id. The request body should be a/an ${baseSchema.description} object with all fields, so the update can be considered a complete replacement. The response back is the state of the ${baseSchema.description} record after the update has been committed. This route is idempotent.`,
+  summary: `Update one ${baseSchema.description || ''} record by id.`,
+  description: `Update one ${baseSchema.description || ''} record by id. The request body should be a/an ${baseSchema.description || ''} object with all fields, so the update can be considered a complete replacement. The response back is the state of the ${baseSchema.description || ''} record after the update has been committed. This route is idempotent.`,
   params: ResourceIdentifier,
   body: omitReadOnly(baseSchema),
   response: {
@@ -71,7 +71,7 @@ export const createCreateManySchema = <T extends typeof ResourceIdentifier>(base
 
 export const createDeleteByIdSchema = <T extends TSchema>(baseSchema: T) => ({
   tags: [toTitleCase(baseSchema.description || '')],
-  summary: `Delete one ${baseSchema.description || ''} by id.`,
+  summary: `Delete one ${baseSchema.description || ''} record by id.`,
   description: `Delete one ${baseSchema.description || ''} record by id. The response back is a JSON object containing a success message.`,
   params: ResourceIdentifier,
   response: {
