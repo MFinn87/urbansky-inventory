@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import {
   createColumnHelper,
   CellContext,
@@ -19,12 +20,16 @@ function InventoryTable({ data, onDelete }: InventoryTableProps) {
       cell: info => info.renderValue(),
     }),
     columnHelper.accessor('serial', {
-      cell: info => info.renderValue(),
       header: () => 'Serial Number',
+      cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('createdAt', {
+      header: () => 'Created Date',
+      cell: info => <div>{ dayjs(info.getValue()).format('MM-DD-YYYY') }</div>,
     }),
     {
-      id: 'delete',
-      header: () => 'Delete',
+      id: 'actions',
+      header: () => '',
       cell: (cellContext: CellContext<Inventory, string>) => (
         <button onClick={() => onDelete(cellContext.row.original)} >Delete</button>
       ),

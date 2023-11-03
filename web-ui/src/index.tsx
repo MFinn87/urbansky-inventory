@@ -4,10 +4,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { MantineProvider, createTheme } from '@mantine/core'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import '@mantine/core/styles.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,17 +21,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 
-const theme = createTheme({
-  fontFamily: 'Montserrat, sans-serif',
-  defaultRadius: 'md',
-});
-
 root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      <MantineProvider theme={theme}>
-        <App />
-      </MantineProvider>
+      <App />
     </QueryClientProvider>
   </BrowserRouter>
 )
