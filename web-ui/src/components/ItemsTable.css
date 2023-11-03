@@ -1,0 +1,8 @@
+.items-table-actions-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.items-table-actions-container button {
+  margin: .25em;
+}
