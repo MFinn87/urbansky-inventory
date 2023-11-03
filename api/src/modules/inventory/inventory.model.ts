@@ -11,9 +11,9 @@ const InventoryModel = createModel('inventory', Type.Object({
     description: 'The serial number that uniquely identifies an instance of the item. An item cannot have duplicate inventory records with the same serial number.',
     maxLength: 63,
   }),
-  createdAt: Type.String({
-    description: 'The datetime the inventory was created.',
-  }),
+  createdAt: Type.Readonly(Type.String({
+    description: 'The datetime the inventory record was created, in UTC. This value cannot be set directly by clients - it is only set by the server.',
+  })),
 }))
 
 export default InventoryModel

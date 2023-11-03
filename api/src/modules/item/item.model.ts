@@ -16,9 +16,9 @@ const ItemModel = createModel('item', Type.Object({
   quantity: Type.Readonly(Type.Number({
     description: 'The total quantity of inventory for this item. This value cannot be set directly, it is just a calculated aggregation over inventory records.',
   })),
-  createdAt: Type.String({
-    description: 'The datetime the item was created.',
-  }),
+  createdAt: Type.Readonly(Type.String({
+    description: 'The datetime the item record was created, in UTC. This value cannot be set directly by clients - it is only set by the server.',
+  })),
 }))
 
 export default ItemModel

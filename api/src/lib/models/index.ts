@@ -33,6 +33,19 @@ export const omitReadOnly = <T extends TSchema>(baseSchema: T) => Type.Omit(
   ),
 ) as unknown as TOmit<T, ReadonlyKeysOf<Static<typeof baseSchema>>>
 
+
+const IdentifiableRecord = Type.Object({
+  id: UUID({ description: 'Uniquely identifies a record' }),
+})
+
+export const createRelatedModels = <T extends typeof IdentifiableRecord> (baseModel: T) => {
+  const NewModel = omitReadOnly(Type.Composite([baseModel], { additionalProperties: false, description: baseModel.description }))
+
+  const UpdateModel = Type.Composite([ Type.Pick(baseModel, ['id']), Type.Partial(NewModel) ], { additionalProperties: false, description: baseModel.description })
+
+  return [NewModel, UpdateModel] as const
+}
+
 export const deleteSuccess = {
   result: 'Ok',
 }
