@@ -1,0 +1,15 @@
+.list-inventory-top-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  margin-bottom: 2em;
+}
+
+.list-inventory-bottom-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}

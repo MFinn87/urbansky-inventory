@@ -3,6 +3,7 @@ import {
   createColumnHelper,
   CellContext,
 } from '@tanstack/react-table'
+import { Button } from 'rsuite'
 import DataTable from './Table'
 import type { Inventory } from '../types'
 
@@ -31,7 +32,7 @@ function InventoryTable({ data, onDelete }: InventoryTableProps) {
       id: 'actions',
       header: () => '',
       cell: (cellContext: CellContext<Inventory, string>) => (
-        <button onClick={() => onDelete(cellContext.row.original)} >Delete</button>
+        <Button appearance="ghost" color="red" onClick={() => onDelete(cellContext.row.original)} >Delete</Button>
       ),
     },
   ]

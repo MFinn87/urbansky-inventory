@@ -4,7 +4,7 @@ import InventoryTable from '../components/InventoryTable'
 import Loading from '../components/Loading'
 import type { Inventory } from '../types'
 
-function InventoryPage() {
+function ListInventory() {
   const queryClient = useQueryClient()
   const { isPending, data } = useQuery({ queryKey: ['inventory'], queryFn: api.findAllInventory })
 
@@ -17,7 +17,7 @@ function InventoryPage() {
 
   return (
     <div className="page">
-      <div>Inventory</div>
+      <h3>Inventory</h3>
       {
         data && !isPending
           ? <InventoryTable data={data} onDelete={onDelete}></InventoryTable>
@@ -27,4 +27,4 @@ function InventoryPage() {
   )
 }
 
-export default InventoryPage
+export default ListInventory
