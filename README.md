@@ -23,9 +23,9 @@ Copy the .env.local file to a new .env file. Then, run:
 .env.dist file is a template for all of the app's environment variables
 
 ### URLs
-API: http://127.0.0.1:8080/items
-API Documentation: http://localhost:8080/docs
-Web UI: http://localhost:8000/items
+* API: http://127.0.0.1:8080/items
+* API Documentation: http://localhost:8080/docs
+* Web UI: http://localhost:8000/items
 
 
 ### Environment Specifics
