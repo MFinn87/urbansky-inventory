@@ -19,6 +19,9 @@ if [ "$NODE_ENV" = "debug" ]; then
 fi
 
 if [ "$NODE_ENV" = "local" ]; then
+  echo "Seeding local dev data..."
+  yarn seed-local-dev-data
+
   echo "Running in local mode..."
   yarn start:local
 fi
