@@ -24,25 +24,7 @@ function ListInventoryByItemId() {
 
   const onDelete = (inventory: Inventory) => mutation.mutate(inventory.id)
 
-  /*
-  return (
-    <div className="page">
-      <div className="list-inventory-header">
-        <h3>Item</h3>
-        { itemData && !isItemQueryPending && <Button appearance="primary" onClick={onCreateInventory}>Create Inventory</Button> }
-      </div>
-      {
-        inventoryData && itemData && !isInventoryQueryPending && !isItemQueryPending
-          ? <>
-              <InventoryItemSummary item={itemData} />
-              <h3>Inventory</h3>
-              <InventoryTable data={inventoryData} onDelete={onDelete}></InventoryTable>
-            </>
-          : <Loading />
-      }
-    </div>
-  )
-  */
+  const navigateBackToAllItems = () => navigate('/items')
 
   return (
     <div className="page">
@@ -59,6 +41,7 @@ function ListInventoryByItemId() {
           : <Loading />
       }
       { inventoryData && !isInventoryQueryPending && <InventoryTable data={inventoryData} onDelete={onDelete}></InventoryTable> }
+      <Button appearance="primary" onClick={navigateBackToAllItems}>Back To All Items</Button> 
     </div>
   )
 }
